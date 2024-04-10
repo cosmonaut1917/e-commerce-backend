@@ -24,6 +24,9 @@ router.get('/:id', (req, res) => {
     },
     include: [Product]
   }).then((data) => {
+    if (!data) {
+      return res.status(404).json({ message: 'No category found with this id' });
+    }
     res.json(data);
   }).catch((err) => {
     res.json(err);
